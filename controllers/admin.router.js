@@ -95,7 +95,20 @@ router.get("/update/:id",function(req,res){
 });
 router.post("/update",function(req,res){
     console.log(req.body);
-    provider.update(req.body);
+    var a=req.body;
+
+    if(req.files.length>0){
+        var result=processUpload(req.files[0]);
+        if(result){
+            a.img=result.fileNameInStaticPath;
+        }else{
+            a.img="/public/admin/images/default.png";
+        }
+    }else{
+        a.img="/public/admin/images/default.png";
+    }
+
+    provider.update(a);
     res.redirect("/admin/home");
 });
 router.get("/add",function(req,res){
@@ -110,17 +123,24 @@ router.use("/search",function(req,res){
         res.redirect("/admin/home");
     }
 });
-router.post("/uploadImage",function(req,res){
-    var file=req.files[0];
-    // console.log(file);
+function processUpload(file){
     var oldFileName=file.path;
     var fileNameWithExtension=file.filename+path.extname(file.originalname);
-    // console.log(fileNameWithExtension);
     var fileNameInStaticPath=path.join("public/admin/images",fileNameWithExtension);
-    // console.log(fileNameInStaticPath);
     var newFileName=path.join(path.parse(file.destination).dir,fileNameInStaticPath);
-    // console.log(newFileName);
-    // console.log(req.body);
+    try{
+        var result=fs.renameSync(oldFileName,newFileName)
+        return {fileNameInStaticPath};
+    }catch(err){
+        return false;
+    }
+}
+router.post("/uploadImage",function(req,res){
+    var file=req.files[0];
+    var oldFileName=file.path;
+    var fileNameWithExtension=file.filename+path.extname(file.originalname);
+    var fileNameInStaticPath=path.join("public/admin/images",fileNameWithExtension);
+    var newFileName=path.join(path.parse(file.destination).dir,fileNameInStaticPath);
     fs.rename(oldFileName,newFileName,function(err){
         if(err){
             console.log(err);
@@ -165,7 +185,17 @@ router.post("/uploadImage",function(req,res){
 router.post("/add",function(req,res){
     var a=req.body;
     a.password="password";
-    provider.add(req.body);
+    if(req.files.length>0){
+        var result=processUpload(req.files[0]);
+        if(result){
+            a.img=result.fileNameInStaticPath;
+        }else{
+            a.img="public/admin/images/default.png";
+        }
+    }else{
+        a.img="public/admin/images/default.png";
+    }
+    provider.add(a);
     res.redirect("/admin/home");
 });
 router.get("/register",function(req,res){

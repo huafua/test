@@ -43,3 +43,11 @@ function uploadFile(element,parentid){
     frm.fileComponent=fileInput;
     fileInput.click();
 }
+window.onload=function(){
+    var topRight=document.querySelector("div.top-right");
+    var img=topRight.querySelector("img");
+    var fileInput=topRight.querySelector("input[type='file']");
+    fileInput.onchange=function(){
+        img.src=window.URL.createObjectURL(this.files[0]);
+    }
+}

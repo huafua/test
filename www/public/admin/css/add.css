@@ -65,8 +65,19 @@ div.content-container div.content div.top-right{
     padding: 5px;
     overflow: hidden;
     text-align: center;
+    position: relative;
+}
+div.content-container div.content div.top-right input[type="file"]{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    display: block;
+    width: 160px;
+    height: 160px;
 }
 div.content-container div.content div.top-right img{
+    
     max-height: 100%;
     max-width: 100%;
     margin:15px 15px;;
