@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/public/admin/css/retrievePwd.css">
+    <title>重置密码</title>
+</head>
+<body>
+    <form action="/admin/resetPwd" method="post">
+        <div class="title">
+            重置密码
+        </div>
+        <div>
+            <input type="hidden" name="id" value="<%=retrieveUser.id%>"/>
+            <label for="username">用户名：<input type="text" value="<%=retrieveUser.username%>" id="username" placeholder="请输入用户名"/></label>
+        </div>
+        <div>
+            <label for="passsord">新密码：<input type="password" name="password" id="password" placeholder="请输入新密码"/></label>
+        </div>
+        <div>
+                <label for="password-confirm">确&nbsp;&nbsp;&nbsp;&nbsp;认：<input type="password" id="password-confirm" placeholder="确认密码"/></label>
+            </div>
+        <div>
+            <input type="submit" value="重置"/>
+        </div>
+    </form>
+    <script>
+        var txtPassword=document.querySelector("#password");
+        var txtRePassword=document.querySelector("#password-confirm");
+        txtPassword.onblur=function(){
+            if(txtPassword.value.trim().length<6){
+                window.alert("密码长度不可小于6");
+                txtPassword.focus();
+            }
+        }
+        txtRePassword.onblur=function(){
+            if(txtPassword.value.trim()!=txtRePassword.value.trim()){
+                window.alert("两次密码不一致");
+                txtRePassword.focus();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>weibo</title>
+    <script src="angular.min.js"></script>
+    <style>
+       table{
+           width: 800px;
+           margin: 10px auto;
+           line-height: 30px;
+           text-align: center;
+           font-family:"calibri","微软雅黑";
+       }
+       table tbody tr:hover{
+           background-color:antiquewhite;
+       }
+       table th,table td{
+           border:1px #ddd solid;
+       }
+       table td button{
+           width: 80px;
+       }
+       div.empty{
+           height: 100px;
+           font-size: 100px;
+           text-align: center;
+           line-height: 100px;
+           font-family:"calibri","微软雅黑";
+           font-weight: bolder;
+           color:red;
+       }
+      
+    </style>
+</head>
+<body ng-app="module">
+    <div ng-controller="weiboController" ng-init="username='Alice';gender=0;height=2;age=23">
+        <input type="text" ng-model="username" placeholder="username"/><p/>
+        <input type="text" ng-model="gender" placeholder="gender"/><p/>
+        <input type="text" ng-model="age" placeholder="age"/><p/>
+        <input type="text" ng-model="height" placeholder="height"/><p/>
+        <button ng-click="add()">评论</button>
+        <div ng-hide="items.length>0" class="empty">没有了</div>
+        <table ng-show="items.length>0">
+            <thead>
+                <th>用户民</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>身高</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                        <td class="field">{{item.username}}</td>
+                        <td class="field">{{item.gender==1?"male":"female"}}</td>
+                        <td class="field">{{item.age}}</td>
+                        <td class="field">{{item.height}}</td>
+                    <td><button ng-click="delete(item)">删除</button></td>
+                </tr>
+            </tbody>
+        </table>
+            
+    </div>
+    <script>
+        var module=angular.module("module",[]);
+        module.controller("weiboController",function($scope,$http){
+            $scope.items=[12,2,3,4,5];
+            $http.get("/weibo?action=query").then(function(res){
+                $scope.items=res.data;
+                console.log(res.data);
+            },function(err){
+                window.alert(er);
+            });
+           
+            $scope.add=function(){
+                $http.get(`/weibo?action=add&username=${$scope.username}&gender=${$scope.gender}&age=${$scope.age}&height=${$scope.height}`).then(function(res){
+                    
+                    $scope.items=res.data;
+                },function(err){
+                    console.log(err);
+                })
+            };
+            $scope.delete=function(item){
+                $http.get(`/weibo?action=delete&id=${item.id}`).then(function(res){
+                   $scope.items=res.data;
+                },function(err){
+                    window.alert(err);
+                })
+            }
+        })
+    </script>
+</body>
+</html>

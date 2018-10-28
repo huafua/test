@@ -1,0 +1,94 @@
+body{
+    margin: 0;
+}
+div.header{
+    height: 40px;
+    background-color: #0492D4;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width:100%;
+}
+div.header img{
+    height: 100%;
+    background-color: white;
+    vertical-align: middle;
+}
+div.header .inf{
+   width:100px;
+   height: 40px;
+   color: white;
+   float: right;
+   text-align: center;
+   font-family: "calibri","微软雅黑";
+   line-height: 40px;
+   margin-right: 2px;
+   transition: all 0.3s ease;
+   text-decoration: none;
+   cursor: pointer;
+}
+div.header .inf:hover{
+    background-color: #0AA2E8;
+}
+div.header .left{
+    float: left;
+    width: 40px;
+    margin-top:-1px;
+}
+
+div.content-container div.content{
+    width: 430px;
+    background-color: #efefef;
+    border: 1px #ddd solid;
+    margin: 50px auto;
+    font-family: calibri;
+    line-height: 30px;
+    padding: 10px 40px;
+    font-family: "微软雅黑";
+}
+div.content-container div.content  div.top{
+    /* height: 120px; */
+    width: 110%;
+    overflow: hidden;
+}
+div.content-container div.content div.top-left{
+    float: left;
+    width: 240px;
+    height: 100%;
+    line-height: 50px;
+    padding:5px;
+}
+div.content-container div.content div.top-right{
+    width: 160px;
+    float: left;
+    height: 100%;
+    padding: 5px;
+    overflow: hidden;
+    text-align: center;
+}
+div.content-container div.content div.top-right img{
+    max-height: 100%;
+    max-width: 100%;
+    margin:15px 15px;;
+}
+div.bottom{
+    height: 40px;
+    margin: 10px 0;
+    text-align: center;
+}
+div.bottom input{
+    width: 120px;
+    height: 40px;
+    font-family: "微软雅黑";
+    margin-top: 5px;
+    border: 1px #aaa solid;
+    box-shadow: 1px 1px 0 0 #888;
+    background-color: #dedede;
+}
+div.content-container div.content div.top-left input,div.content-container div.content div.top-left select {
+    height: 30px;
+    width: 160px;
+    margin:0;
+    padding: 0;
+    text-indent: 5px;
+}

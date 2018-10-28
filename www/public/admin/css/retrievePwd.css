@@ -1,0 +1,45 @@
+body{
+    margin: 0;
+    background-color: #0492D4;
+}
+
+form *{
+    font-family: "calibri","微软雅黑";
+   
+}
+
+form{
+    width: 400px;
+    border-radius: 5px;
+    border:1px #ddd solid;
+    padding: 20px 10px;
+    margin: 50px auto;
+    background-color: white;
+    box-shadow: 2px 2px 0 2px #555;
+}
+
+form div{
+    height: 50px;
+    text-align: center;
+}
+form div.title{
+    height: 40px;
+    line-height: 40px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    background-color: rgb(88, 170, 236);
+    color: #fff;
+}
+form div input[type="text"],form div input[type="password"]{
+    width: 200px;
+    height: 35px;
+    padding: 0;
+    text-indent: 5px;
+}
+form div input[type="submit"]{
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    border:1px #aaa solid;
+}

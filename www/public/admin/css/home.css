@@ -1,0 +1,129 @@
+body{
+    margin: 0;
+}
+div.header{
+    height: 40px;
+    background-color: #0492D4;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+div.header img{
+    height: 100%;
+    background-color: white;
+    vertical-align: middle;
+}
+div.header .inf{
+   width:100px;
+   height: 40px;
+   color: white;
+   float: right;
+   text-align: center;
+   font-family: "calibri","微软雅黑";
+   line-height: 40px;
+   margin-right: 2px;
+   transition: all 0.3s ease;
+   text-decoration: none;
+   cursor: pointer;
+}
+div.header .inf:hover{
+    background-color: #0AA2E8;
+}
+div.header .left{
+    float: left;
+    width: 40px;
+    margin-top:-1px;
+}
+div.search{
+    padding:10px;
+    background-color: #efefef;
+    border:1px #ddd solid;
+    margin:40px auto;
+    width: 80%;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    border-radius: 5px;
+}
+div.search input{
+    width: 100px;
+    height: 30px;
+    border:1px #aaa solid;
+    font-family: "calibri","微软雅黑";
+}
+div.search input[type="text"]{
+    width: 80%;
+    margin-left: 5%;
+    text-indent: 10px;
+    padding: 0;
+}
+div.content-container div.content{
+    width: 80%;
+    /* height: 500px; */
+    background-color: #efefef;
+    border: 1px #ddd solid;
+    margin: 10px auto;
+    font-family: calibri;
+    line-height: 30px;
+    padding: 10px;
+    max-height: 700px;
+    overflow: auto;
+}
+div.content-container div.content table{
+    margin: 0px auto;
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: "calibri","微软雅黑";
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
+}
+div.content-container div.content table caption{
+    background-color:rgb(162, 220, 238);
+    font-weight: bolder;
+    padding: 10px 0;
+}
+div.content-container div.content table tbody td img.person-image{
+    width:32px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: #fff;
+    border:1px rgb(177, 204, 216) solid;
+
+}
+div.content-container div.content table td,div.content-container div.content table thead th{
+    border-bottom: 1px rgb(196, 219, 226) solid;
+    padding:5px 0;
+    text-align: center;
+}
+div.content-container div.content table .btn{
+    display: inline-block;
+    width: 100px;
+    background-color:#ddd;
+    font-family: "calibri","微软雅黑";
+    text-decoration: none;
+    color: #333;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+    transition: all 0.4s ease;
+}
+div.content-container div.content table a.btn-remove:hover{
+    background-color:rgb(233, 155, 155);
+    color:white;
+}
+div.content-container div.content table .btn-edit:hover{
+    background-color: rgb(134, 223, 230);
+    color:white;
+}
+
+div.content-container div.content table .btn-add{
+    margin-left: 10px;
+    font-weight: normal;
+}
+div.content-container div.content table .btn-add:hover{
+    background-color: rgb(216, 238, 207);
+    
+}

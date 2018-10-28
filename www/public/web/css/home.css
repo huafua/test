@@ -1,0 +1,99 @@
+body{
+    margin: 0;
+    background-color: #0492D4;
+    min-width: 1400px;
+}
+body *{
+    font-family: '微软雅黑','calibri';
+    color:#555;
+}
+div.header img{
+    height: 100%;
+    background-color: white;
+    vertical-align: middle;
+}
+div.search{
+    padding:10px;
+    background-color: #efefef;
+    border:1px #ddd solid;
+    margin:40px auto;
+    width: 80%;
+    margin-bottom: 0px;
+    border-radius: 5px;
+}
+div.search input{
+    width: 100px;
+    height: 30px;
+    border:1px #aaa solid;
+}
+div.search input[type="text"]{
+    width: 80%;
+    margin-left: 5%;
+    text-indent: 10px;
+    padding: 0;
+}
+div.content-container div.content{
+    width: 80%;
+    /* height: 500px; */
+    background-color: #efefef;
+    border: 1px #ddd solid;
+    border-radius: 5px;
+    margin: 10px auto;
+    font-family: calibri;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 10px;
+}
+div.content-container div.content>div{
+    float:left;
+    margin:10px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.15s ease-in;
+}
+div.content-container div.content>div:hover{
+    box-shadow: 0 0 0 1px #0492D4;
+}
+div.content-container div.content>div>div:first-child{
+    border:1px #ddd solid;padding:8px;
+   
+    border-radius: 5px;
+}
+div.content-container div.content>div>div:first-child>img{
+    border-radius: 5px;
+    margin-bottom: -10px;
+    border:1px #ededed solid;
+}
+div.content-container div.content>div>div:last-child{
+    text-align: center;
+}
+div.content-container div.content>div span.div-info{
+    position: absolute;
+    width:20px;
+    background-color: rgba(0,0,0,0.5);
+    height: 30px;
+    bottom: 3px;
+    right: 9px;
+    padding:2px 5px;
+    margin-bottom: 6px;
+    text-align: center;
+    border-radius: 5px;
+}
+div.content-container div.content>div span.div-info img{
+    height: 20px;
+    vertical-align: middle;
+    background-color: transparent;
+}
+a.backend{
+    color:#ddd;
+    
+    position: fixed;
+    top: 5px;
+    right:5px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+a.backend:hover{
+    background-color: #0492D4;
+    color:white;
+}

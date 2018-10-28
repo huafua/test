@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户清单</title>
+    <link rel="stylesheet" href="/static/public/web/css/home.css">
+</head>
+<body>
+        <div class="content-container">
+            <div class="search">
+                <form action="/search" method="get">
+                    <input type="text" name="keyword" value="<%=keyword%>" placeholder="请输入关键字儿"/>
+                    <input type="submit" value="查找">
+                </form>
+            </div>
+            <div class="content">
+                    <% for(var i=0;i<data.length;i++){%>
+                        <div data="<%=data[i].id%>">
+                            <div style="position: relative">
+                                <img style="width:90px;height:90px;" src="/static/<%=data[i].img%>">
+                                <span class="div-info"><img  src="#" title="<%=data[i].gender%>"></span>
+                            </div>
+                            <div> 
+                                <!-- <%=data[i].gender%> -->
+                                
+                                <!-- <%=data[i].id%> -->
+                                <%=data[i].username.substring(0,8).toUpperCase()%>                               
+                            </div>
+                        </div>
+                    <%}%>
+            </div>
+        </div>
+        <a href="/admin" class="backend">管理员后台</a>
+        <script>
+            var divs=document.querySelectorAll(".div-info");
+            for(var i=0;i<divs.length;i++){
+                var img=divs[i].querySelectorAll("img")[0];
+                img.src=img.getAttribute("title").toLowerCase()=="male"?"static/public/common/images/icon-male.png":"static/public/common/images/icon-female.png";
+            }
+
+            Array.prototype.forEach.call(document.querySelectorAll(".content>div"),function(x){
+                x.addEventListener("click",function(){
+                    var container=document.createElement("div");
+                    var mask=document.createElement("div");
+                    var closeBtn=document.createElement("div");
+                    var img=document.createElement("img");
+                    container.style.position="absolute";
+                    container.style.top=0;
+                    container.style.left=0;
+                    container.style.width="100%";
+                    container.style.height="100%";
+                    container.style.overflow="hidden";
+                    mask.style.width="100%";
+                    mask.style.height="100%";
+                    mask.style.position="absolute";
+                    mask.style.left=0;
+                    mask.style.top=0;
+                    mask.style.zIndex=0;
+                    mask.style.backgroundColor="#000";
+                    mask.style.opacity="0.8";
+                    container.appendChild(mask);
+                    closeBtn.style.width="50px";
+                    closeBtn.style.height="50px";
+                    closeBtn.style.lineHeight="50px";
+                    closeBtn.style.position="absolute";
+                    closeBtn.style.top="10px";
+                    closeBtn.style.right="10px";
+                    closeBtn.style.padding="0px";
+                    closeBtn.innerHTML="&times;";
+                    closeBtn.style.fontWeight="bolder";
+                    closeBtn.style.textAlign="center";
+                    closeBtn.style.lineHeight="50px";
+                    closeBtn.style.color="#fff";
+                    closeBtn.style.borderRadius="50%";
+                    closeBtn.onmouseover=function(){
+                        closeBtn.style.backgroundColor="rgba(0,0,0,0.5)";
+                    }
+                    closeBtn.onmouseout=function(){
+                        closeBtn.style.backgroundColor="transparent";
+                    }
+                    closeBtn.style.fontSize="2em";
+                    closeBtn.style.cursor="pointer";
+                    closeBtn.style.zIndex=100;
+                    closeBtn.onclick=function(){
+                        document.body.removeChild(this.parentElement);
+                    }
+                    container.appendChild(closeBtn);
+                    var img=document.createElement("img");
+                    // img.style.width="200px";
+                    img.style.position="absolute";
+                    img.style.left="50%";
+                    img.style.top="50%";
+                    img.src=this.querySelector("img").src;
+                    img.style.margin="20px 40px";
+                    img.style.borderRadius="5%";
+                    img.style.backgroundColor="#fff";
+                    img.style.zIndex=100;
+                    img.style.maxHeight="90%";
+                    img.style.maxWidth="90%";
+                    container.appendChild(img);
+                    document.body.appendChild(container);
+                    img.style.marginLeft=0-parseInt(img.offsetWidth)/2+"px";
+                    img.style.marginTop=0-parseInt(img.offsetHeight)/2+"px";
+                });
+            })
+
+        </script>
+</body>
+</html>

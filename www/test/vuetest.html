@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>test</title>
+</head>
+<body>
+    <div id="app">
+        <item-list ></item-list>
+        <my-view v-on:add_event="getAddResult" v-on:add_value="getNewResult"></my-view>
+        <div style="border:1px #8d8 solid;padding:10px;width: 100px;color: red;margin: 10px;font-family: calibri;">{{result}}+{{value}}=<span>{{aValue}}</span></div>
+    </div>
+    <script>
+        Vue.component("my-view",{
+            template:"<button v-on:click='add' style='padding:10px;width:100px;font-family:微软雅黑;'>變更一下</button>",
+            methods:{
+                add:function(){
+                    this.$emit("add_event",{
+                        result:1
+                    });
+                    this.$emit("add_value",{
+                        result:10
+                    });
+                }
+            }           
+        });
+        Vue.component("item-list",{
+            data:function(){
+                return {
+                    a:[]
+                }
+            },
+            methods: {
+                getData:function(event){
+                    _self=this;
+                    var http=new XMLHttpRequest();
+                    http.onreadystatechange=function(){
+                        if(this.readyState==4){
+                            if(this.status==200){
+                               _self.a=JSON.parse(this.responseText);
+                            }
+                        }
+                    }
+                    http.open("get","/weibo",true);
+                    http.send();
+                }
+            },
+            filters:{
+                gender:function(value){
+                    if(value==1){
+                        return "男性";
+                    }else{
+                        return "女性";
+                    }
+                }
+            },
+            template:`<div>
+                    <button  style='font-family:微软雅黑;padding:10px;' @click="getData($event)">获取数据</button>
+                    <item v-for='i in a' v-bind:item='i'></item>
+                    </div>`
+        })
+        Vue.component("item",{
+            props:["item"],
+            methods:{
+                getDetail:function(id){
+                    
+                }
+            },
+            filters:{
+                togender:function(value){
+                    return value=="0"?"女性":"男性";
+                }
+            },
+            template:`<div @click="getDetail(item.id)" style='margin:1px 0;height:40px;line-height:40px;border:1px #ddd solid;text-align:center;'>
+                    <span>用户名：{{item.username}}</span>
+                    <span>性别：{{item.gender|togender}}</span>
+                    <span><a v-if="item.id" v-bind:href="'/weibo?action=delete&id='+item.id" >删除</a></span>
+                </div>`
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                result:1,
+                value:1
+            },
+            computed:{
+                aValue:function(){
+                    return this.value+this.result;
+                }
+            },
+            methods:{
+               
+                getAddResult:function(pval){
+                    this.result+=pval.result;
+                },
+                getNewResult:function(pval){
+                    this.value+=pval.result;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

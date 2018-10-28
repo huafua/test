@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/public/admin/css/retrievePwd.css">
+    <title>回答密保问题</title>
+</head>
+<body>
+    <form action="/admin/verify" method="post">
+        <div class="title">
+            回答密保问题
+        </div>
+        <div>
+            <label for="">用户名：<input type="text" name="username" id="username" placeholder="请输入用户名"/></label>
+        </div>
+        <div>
+            问&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" style="border:1px #fff solid;background-color: #fff;" disabled value="我的问题是什么"/>
+        </div>
+        <div>
+            <label for="answer">答&nbsp;&nbsp;&nbsp;&nbsp;案：<input type="text" name="answer" id="answer" placeholder="请输入正确答案"/></label>
+        </div>
+        <div>
+            <input type="submit" value="确认"/>
+        </div>
+    </form>
+    <script>
+        var inputs=document.querySelector("form").querySelectorAll("input");
+        var txtUsername=inputs[0];
+        var txtQ=inputs[1];
+        txtUsername.onblur=function(){
+            if(this.value.trim()=="")
+                return;
+            var http=new XMLHttpRequest();
+            http.onreadystatechange=function(){
+                if(this.readyState==4){
+                    if(this.status==200){
+                        var result=JSON.parse(this.responseText);
+                        if(result.status=="ok"){
+                            txtQ.value=result.question;
+                        }else{
+                            txtQ.value="用户不存在或不是管理员";
+                        }
+                    }
+                }
+            };
+            http.open("post","/admin/questions",true);
+            http.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            http.send("username="+txtUsername.value);
+        }
+    </script>
+</body>
+</html>

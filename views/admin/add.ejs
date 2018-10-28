@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加员工</title>
+    <link rel="stylesheet" href="/static/public/admin/css/add.css">
+    <script src="/static/public/admin/js/common.js"></script>
+</head>
+<body>
+        <div class="header">
+            <a href="/" class="inf left"><img src="/static/public/common/images/logo.png" alt=""/></a>
+            <a  class="inf" href="/admin">后台主页</a>
+            <a  class="inf" href="/admin/logout">注销</a>
+            <span class="inf"><%=user.username.toUpperCase()%></span>
+        </div>
+        <div class="content-container">
+           <div class="content">
+                <form id="frmAdd" action="/admin/add" method="POST" enctype="multipart/form-data">
+                    <div class="top">
+                        <div class="top-left">
+                            <div>
+                                <label for="username">
+                                    工&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp; <input type="text" value="huafua" name="username" placeholder="新员工工号" id="username"/>
+                                </label>
+                            </div>
+                            <div>
+                                <label for="gender">
+                                    性&nbsp;&nbsp;&nbsp;别:&nbsp;&nbsp;
+                                    <!-- <input type="text" value="male" placeholder="新员工性别" name="gender" id="gender"/> -->
+                                    <select name="gender" id="gender">
+                                        <option value="male">male</option>
+                                        <option value="female">female</option>
+                                    </select>                                  
+                                </label>
+                            </div>
+                            <div>
+                                <label for="isAdmin">
+                                    角&nbsp;&nbsp;&nbsp;色:&nbsp;&nbsp;
+                                    <select name="isAdmin" id="isAdmin">
+                                        <option value="0">是否是管理员</option>
+                                        <option value="1">管理员</option>
+                                        <option value="0">吃瓜群众</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="top-right">
+                            <img onclick="uploadFile(this,'frmAdd')" src="/static/public/admin/images/default.png">
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <label for="desc">
+                            &nbsp;描&nbsp;&nbsp;&nbsp;述:&nbsp;&nbsp; <textarea style="vertical-align: top;" name="desc" id="desc" cols="45" rows="10"></textarea>
+                        </label>
+                    </div>
+                    <div class="bottom">
+                        <input type="submit" value="添加"/> <input type="reset" value="重置"/>
+                    </div>
+                </form>
+           </div>
+        </div>
+        <div class="footer"></div>
+</body>
+</html>

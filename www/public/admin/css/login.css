@@ -1,0 +1,71 @@
+body{
+    background-color: #0497D4;
+    background-image: url(/static/public/common/images/background.bmp);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+div.container{
+    width:800px;
+    height: 300px;
+    border:1px #ddd solid;
+    margin: 200px auto;
+    background-color:#fff;
+}
+div.container  div.left{
+    float: left;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+}
+div.container div.left img{
+    width: 90%;
+    height: 93%;
+    padding: 10px;
+    border-radius: 20px;
+}
+div.container div.right{
+    height: 300px;
+    float: left;
+    line-height: 30px;
+}
+div.container div.right {
+    font-family: calibri,"微软雅黑";
+    margin: 60px 10px;
+}
+div.container div.right div{
+    line-height: 40px;
+    padding:10px 0;
+}
+div.container div.right div input{
+    width: 200px;
+    height: 30px;
+    font-family: calibri,"微软雅黑";
+    text-indent: 5px;
+}
+div.container div.right div input[type="submit"],div.container div.right div a.button{
+    height: 40px;
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    border: 1px #aaa solid;
+    box-shadow: 1px 1px 0 0 #888;
+    background-color: #dedede;
+    line-height: 40px;
+    width: 100px;
+    margin-left: 20px;
+    text-indent: 0;
+}
+div.container div.right div label a{
+    color: #888;
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+a.frontEnd{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    color: #adadad;
+    text-decoration: none;
+    font-family: "微软雅黑","calibri";
+}
